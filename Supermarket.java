@@ -1,23 +1,34 @@
 public class Supermarket implements PersonQueue {
-	private Person queueStart = null;
+	private Person head = null;
 	
 	public void insert(Person person) {
-		if (queueStart == null) {
-			queueStart = person;
+		if (head == null) {
+			head = person;
 		} else {
-			Person current = queueStart;
-			while(current.getNext() != null) {
-				current = current.getNext();
-			}
-			current.setNext(person);
-			person.setPrevious(current);
+			person.setNext(head);
+			head.setPrevious(person);			
+			head = person;
 		}
 	}
 	/**
 	* Removes a person from the queue.
 	*/
 	public Person retrieve(){
-		return queueStart;
+		if (head == null) {
+			return null;
+		} else {
+			Person current = head;
+			while (current.getNext() != null) {
+				current = current.getNext();
+			}
+			if (current.getPrevious() != null) {
+				current.getPrevious().setNext(null);
+				return current;
+			} else {
+				head = null;
+				return current;
+			}
+		}
 	}
 	
 	public void addPerson(Person newPerson) {
@@ -26,12 +37,10 @@ public class Supermarket implements PersonQueue {
 	
 	public void servePerson() {
 		retrieve();
-		queueStart = queueStart.getNext();
-		queueStart.setPrevious(null);
 	}
 	
 	public int queueLength() {
-		Person current = queueStart;
+		Person current = head;
 		int count = 0;
 		while (current != null) {
 			count++;
@@ -64,6 +73,7 @@ public class Supermarket implements PersonQueue {
 		servePerson();
 		servePerson();
 		servePerson();
+		System.out.println(queueLength());	
 		servePerson();
 		System.out.println(queueLength());		
 	}

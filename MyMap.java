@@ -46,14 +46,21 @@ public class MyMap implements SimpleMap {
 	* name is added with the same key.
 	*/
 	public void remove(int key) {
-		if (head.getKey() == key) {
+		if (head == null) {
+			System.out.println("Key " + key + " not found.");
+		} else if (head.getKey() == key ) {
 			head = head.getNext();
 		} else {
 			MapLink current = head;
-			while (current != null && current.getNext().getKey() != key) {
+			while (current.getNext() != null && current.getNext().getKey() != key) {
 				current = current.getNext();
 			}
-			current.setNext(current.getNext().getNext());
+			if (current.getNext() == null) {
+				System.out.println("Key " + key + " not found.");
+				return;
+			} else {
+				current.setNext(current.getNext().getNext());
+			}
 		}
 	}	
 	
@@ -79,6 +86,8 @@ public class MyMap implements SimpleMap {
 		System.out.println(get(3));
 		remove(1);
 		remove(3);
+		remove(3);
+		remove(2);
 		remove(2);
 		System.out.println(get(1));
 		System.out.println(get(2));
@@ -87,6 +96,10 @@ public class MyMap implements SimpleMap {
 		put(1, "Rob");
 		put(1, "Tim");
 		System.out.println(get(1));
+		remove(4);
+		remove(1);
+		remove(1);
+		
 	}
 	
 	public static void main(String[] args) {

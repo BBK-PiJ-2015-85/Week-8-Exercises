@@ -4,7 +4,7 @@ public class Person {
 	private Person next;
 	private Person previous;
 	
-	public Person(String name){
+	public Person(String name, int age){
 		this.name = name;
 		this.age = age;
 		this.next = null;

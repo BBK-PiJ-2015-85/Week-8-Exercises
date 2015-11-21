@@ -48,6 +48,7 @@ public class OldPersonSupermarket implements PersonQueue {
 			} else if (current.getPrevious() == null) {
 				//oldest is last in the queue
 				head = current.getNext();
+				current.getNext().setPrevious(null);
 				System.out.println("Customer " + current.getName() + " has been served.");
 				return current;				
 			} else {

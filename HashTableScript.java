@@ -4,6 +4,13 @@ public class HashTableScript {
 		myImp.put(5, "Jim");
 		myImp.put(5, "Ben");		
 		myImp.put(5, "Tom");
+		myImp.put(5, "Ali");
+		myImp.put(5, "Ali");
+		myImp.put(5, "Ali");
+		myImp.put(5, "Ali");
+		myImp.put(5, "Ali");
+		myImp.put(5, "Ali");
+		myImp.put(5, "Ali");
 		myImp.put(5, "Ali");		
 		String[] x = new String[10];
 		x = myImp.get(5);
